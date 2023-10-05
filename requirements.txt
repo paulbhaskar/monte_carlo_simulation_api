@@ -1,0 +1,8 @@
+django
+djangorestframework
+python-dotenv
+mongoengine
+django-rest-framework-mongoengine
+pytest
+numpy
+celery[redis] 

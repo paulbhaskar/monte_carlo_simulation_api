@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from mongoengine import connect
+
+from config import constants
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,12 +76,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+MONGO_DB_NAME = constants.MONGO_DB_NAME
+MONGO_DB_HOST = constants.MONGO_DB_HOST
+MONGO_DB_PORT = constants.MONGO_DB_PORT
+
+assert any(elem is None for elem in [
+           MONGO_DB_NAME, MONGO_DB_HOST, MONGO_DB_PORT]) is False
+
+connect(MONGO_DB_NAME, host=MONGO_DB_HOST, alias='default', port=MONGO_DB_PORT)
 
 
 # Password validation

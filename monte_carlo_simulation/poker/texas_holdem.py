@@ -6,6 +6,8 @@ from monte_carlo_simulation.standard_deck.deck import Deck
 
 
 class TexasHoldem():
+    __slots__ = ('_deck', '_community_cards')
+
     def __init__(self):
         self._deck = Deck()
         self._deck.shuffle()

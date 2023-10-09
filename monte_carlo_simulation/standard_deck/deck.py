@@ -4,6 +4,8 @@ from monte_carlo_simulation.standard_deck.card import Card
 
 
 class Deck:
+    __slots__ = ('_deck')
+
     def __init__(self):
         self._deck = np.array([])
         for suit in Card.SUITS:

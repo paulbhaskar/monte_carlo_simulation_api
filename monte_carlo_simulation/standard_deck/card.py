@@ -2,6 +2,7 @@ class Card:
     SUITS = ['spades', 'clubs', 'hearts', 'diamonds']
     RANKS = [str(value) for value in range(2, 11)]
     RANKS.extend(['jack', 'queen', 'king', 'ace'])
+    __slots__ = ('_suit', '_rank')
 
     def __init__(self, suit, rank):
         if (self.validate_card(suit, rank)):

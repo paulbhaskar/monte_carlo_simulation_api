@@ -11,3 +11,5 @@ MONGO_DB_PORT = int(os.environ.get('MONGO_DB_PORT', 27017))
 CELERY_BROKER = os.environ.get("CELERY_BROKER", "redis://127.0.0.1:6379/0")
 CELERY_RESULT_BACKEND = os.environ.get(
     "CELERY_RESULT_BACKEND", "redis://127.0.0.1:6379/0")
+
+LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO')

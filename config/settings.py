@@ -139,3 +139,60 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Logging configuration
+CELERY_LOGFILE = './celery.log'
+DJANGO_LOGFILE = './django.log'
+BACKEND_LOGFILE = './backend.log'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {'format':
+                    '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
+                    }
+    },
+    'handlers': {
+        'celery_file':  {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': CELERY_LOGFILE,
+        },
+        'console':  {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'backend_file':  {
+            'level': constants.LOG_LEVEL,
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': BACKEND_LOGFILE,
+        },
+        'django_file':  {
+            'level': constants.LOG_LEVEL,
+            'class': 'logging.FileHandler',
+            'formatter': 'verbose',
+            'filename': DJANGO_LOGFILE,
+        },
+    },
+    'loggers': {
+        'backend_logger': {
+            'handlers': ['console', 'backend_file'],
+            'level': constants.LOG_LEVEL,
+            'propagate': False,  # neeeded to prevent double logging with root logger
+        },
+        'celery': {
+            'handlers': ['celery_file', 'console'],
+            'level': 'INFO',
+            'propagate': False
+        },
+        'django': {
+            'handlers': ['console', 'django_file'],
+            'level': 'INFO',
+            'propagate': False,
+        }
+    }
+}

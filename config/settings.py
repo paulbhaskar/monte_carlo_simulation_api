@@ -74,6 +74,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+# Celery settings
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_ACKS_LATE = True
+CELERY_BROKER_URL = constants.CELERY_BROKER
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 86400}  # 24 hours
+CELERY_ENABLE_UTC = True
+CELERYD_HIJACK_ROOT_LOGGER = False
+CELERY_RESULT_BACKEND = constants.CELERY_RESULT_BACKEND
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_SEND_EVENTS = True
+CELERY_TASK_SERIALIZER = 'json'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

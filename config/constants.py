@@ -13,3 +13,7 @@ CELERY_RESULT_BACKEND = os.environ.get(
     "CELERY_RESULT_BACKEND", "redis://127.0.0.1:6379/0")
 
 LOG_LEVEL = os.environ.get('LOG_LEVEL', 'INFO')
+
+TIME_ZONE = os.environ.get('TIME_ZONE', 'EST')
+
+TASK_BATCH_SIZE = int(os.environ.get('TASK_BATCH_SIZE'))

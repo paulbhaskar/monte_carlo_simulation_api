@@ -6,3 +6,4 @@ django-rest-framework-mongoengine
 pytest
 numpy
 celery[redis] 
+Ipython

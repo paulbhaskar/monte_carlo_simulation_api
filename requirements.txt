@@ -7,3 +7,4 @@ pytest
 numpy
 celery[redis] 
 Ipython
+django-cors-headers
